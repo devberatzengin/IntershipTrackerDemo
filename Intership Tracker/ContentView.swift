@@ -1,61 +1,24 @@
-//
-//  ContentView.swift
-//  Intership Tracker
-//
-//  Created by Berat Zengin on 25.03.2026.
-//
-
 import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+        TabView {
+            ApplicationsTabView()
+                .tabItem { Label("Başvurular", systemImage: "briefcase.fill") }
+            CalendarTabView()
+                .tabItem { Label("Takvim", systemImage: "calendar.badge.clock") }
+            AnalyticsTabView()
+                .tabItem { Label("Analitik", systemImage: "chart.bar.fill") }
+            ToolsTabView()
+                .tabItem { Label("Araçlar", systemImage: "square.grid.2x2.fill") }
+            SettingsView()
+                .tabItem { Label("Ayarlar", systemImage: "gearshape.fill") }
         }
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: [Internship.self, Reference.self, CVDocument.self, NetworkContact.self, InterviewQuestion.self, AppGoal.self, InterviewRound.self, CoverLetter.self], inMemory: true)
 }
