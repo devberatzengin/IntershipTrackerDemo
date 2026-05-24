@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct Intership_TrackerApp: App {
+struct internship_TrackerApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Internship.self, Reference.self, CVDocument.self,

@@ -24,15 +24,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9C692FAA2F74198100BD49D3 /* Intership Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Intership Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C692FB92F74198100BD49D3 /* Intership TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Intership TrackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C692FC32F74198100BD49D3 /* Intership TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Intership TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C692FAA2F74198100BD49D3 /* Internship Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Internship Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C692FB92F74198100BD49D3 /* Internship TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Internship TrackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C692FC32F74198100BD49D3 /* Internship TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Internship TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		9C692FAC2F74198100BD49D3 /* Intership Tracker */ = {
+		9C692FAC2F74198100BD49D3 /* Internship Tracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Intership Tracker";
+			path = "Internship Tracker";
 			sourceTree = "<group>";
 		};
 		9C692FBC2F74198100BD49D3 /* Intership TrackerTests */ = {
@@ -75,7 +75,7 @@
 		9C692FA12F74198100BD49D3 = {
 			isa = PBXGroup;
 			children = (
-				9C692FAC2F74198100BD49D3 /* Intership Tracker */,
+				9C692FAC2F74198100BD49D3 /* Internship Tracker */,
 				9C692FBC2F74198100BD49D3 /* Intership TrackerTests */,
 				9C692FC62F74198100BD49D3 /* Intership TrackerUITests */,
 				9C692FAB2F74198100BD49D3 /* Products */,
@@ -85,9 +85,9 @@
 		9C692FAB2F74198100BD49D3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C692FAA2F74198100BD49D3 /* Intership Tracker.app */,
-				9C692FB92F74198100BD49D3 /* Intership TrackerTests.xctest */,
-				9C692FC32F74198100BD49D3 /* Intership TrackerUITests.xctest */,
+				9C692FAA2F74198100BD49D3 /* Internship Tracker.app */,
+				9C692FB92F74198100BD49D3 /* Internship TrackerTests.xctest */,
+				9C692FC32F74198100BD49D3 /* Internship TrackerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9C692FA92F74198100BD49D3 /* Intership Tracker */ = {
+		9C692FA92F74198100BD49D3 /* Internship Tracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C692FCD2F74198100BD49D3 /* Build configuration list for PBXNativeTarget "Intership Tracker" */;
+			buildConfigurationList = 9C692FCD2F74198100BD49D3 /* Build configuration list for PBXNativeTarget "Internship Tracker" */;
 			buildPhases = (
 				9C692FA62F74198100BD49D3 /* Sources */,
 				9C692FA72F74198100BD49D3 /* Frameworks */,
@@ -108,18 +108,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				9C692FAC2F74198100BD49D3 /* Intership Tracker */,
+				9C692FAC2F74198100BD49D3 /* Internship Tracker */,
 			);
-			name = "Intership Tracker";
+			name = "Internship Tracker";
 			packageProductDependencies = (
 			);
 			productName = "Intership Tracker";
-			productReference = 9C692FAA2F74198100BD49D3 /* Intership Tracker.app */;
+			productReference = 9C692FAA2F74198100BD49D3 /* Internship Tracker.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9C692FB82F74198100BD49D3 /* Intership TrackerTests */ = {
+		9C692FB82F74198100BD49D3 /* Internship TrackerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C692FD02F74198100BD49D3 /* Build configuration list for PBXNativeTarget "Intership TrackerTests" */;
+			buildConfigurationList = 9C692FD02F74198100BD49D3 /* Build configuration list for PBXNativeTarget "Internship TrackerTests" */;
 			buildPhases = (
 				9C692FB52F74198100BD49D3 /* Sources */,
 				9C692FB62F74198100BD49D3 /* Frameworks */,
@@ -133,16 +133,16 @@
 			fileSystemSynchronizedGroups = (
 				9C692FBC2F74198100BD49D3 /* Intership TrackerTests */,
 			);
-			name = "Intership TrackerTests";
+			name = "Internship TrackerTests";
 			packageProductDependencies = (
 			);
 			productName = "Intership TrackerTests";
-			productReference = 9C692FB92F74198100BD49D3 /* Intership TrackerTests.xctest */;
+			productReference = 9C692FB92F74198100BD49D3 /* Internship TrackerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9C692FC22F74198100BD49D3 /* Intership TrackerUITests */ = {
+		9C692FC22F74198100BD49D3 /* Internship TrackerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C692FD32F74198100BD49D3 /* Build configuration list for PBXNativeTarget "Intership TrackerUITests" */;
+			buildConfigurationList = 9C692FD32F74198100BD49D3 /* Build configuration list for PBXNativeTarget "Internship TrackerUITests" */;
 			buildPhases = (
 				9C692FBF2F74198100BD49D3 /* Sources */,
 				9C692FC02F74198100BD49D3 /* Frameworks */,
@@ -156,11 +156,11 @@
 			fileSystemSynchronizedGroups = (
 				9C692FC62F74198100BD49D3 /* Intership TrackerUITests */,
 			);
-			name = "Intership TrackerUITests";
+			name = "Internship TrackerUITests";
 			packageProductDependencies = (
 			);
 			productName = "Intership TrackerUITests";
-			productReference = 9C692FC32F74198100BD49D3 /* Intership TrackerUITests.xctest */;
+			productReference = 9C692FC32F74198100BD49D3 /* Internship TrackerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9C692FA52F74198100BD49D3 /* Build configuration list for PBXProject "Intership Tracker" */;
+			buildConfigurationList = 9C692FA52F74198100BD49D3 /* Build configuration list for PBXProject "Internship Tracker" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9C692FA92F74198100BD49D3 /* Intership Tracker */,
-				9C692FB82F74198100BD49D3 /* Intership TrackerTests */,
-				9C692FC22F74198100BD49D3 /* Intership TrackerUITests */,
+				9C692FA92F74198100BD49D3 /* Internship Tracker */,
+				9C692FB82F74198100BD49D3 /* Internship TrackerTests */,
+				9C692FC22F74198100BD49D3 /* Internship TrackerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		9C692FBB2F74198100BD49D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9C692FA92F74198100BD49D3 /* Intership Tracker */;
+			target = 9C692FA92F74198100BD49D3 /* Internship Tracker */;
 			targetProxy = 9C692FBA2F74198100BD49D3 /* PBXContainerItemProxy */;
 		};
 		9C692FC52F74198100BD49D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9C692FA92F74198100BD49D3 /* Intership Tracker */;
+			target = 9C692FA92F74198100BD49D3 /* Internship Tracker */;
 			targetProxy = 9C692FC42F74198100BD49D3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -472,7 +472,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Intership Tracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Intership Tracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Internship Tracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Internship Tracker";
 			};
 			name = Debug;
 		};
@@ -494,7 +494,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Intership Tracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Intership Tracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Internship Tracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Internship Tracker";
 			};
 			name = Release;
 		};
@@ -541,7 +541,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9C692FA52F74198100BD49D3 /* Build configuration list for PBXProject "Intership Tracker" */ = {
+		9C692FA52F74198100BD49D3 /* Build configuration list for PBXProject "Internship Tracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C692FCB2F74198100BD49D3 /* Debug */,
@@ -550,7 +550,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C692FCD2F74198100BD49D3 /* Build configuration list for PBXNativeTarget "Intership Tracker" */ = {
+		9C692FCD2F74198100BD49D3 /* Build configuration list for PBXNativeTarget "Internship Tracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C692FCE2F74198100BD49D3 /* Debug */,
@@ -559,7 +559,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C692FD02F74198100BD49D3 /* Build configuration list for PBXNativeTarget "Intership TrackerTests" */ = {
+		9C692FD02F74198100BD49D3 /* Build configuration list for PBXNativeTarget "Internship TrackerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C692FD12F74198100BD49D3 /* Debug */,
@@ -568,7 +568,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C692FD32F74198100BD49D3 /* Build configuration list for PBXNativeTarget "Intership TrackerUITests" */ = {
+		9C692FD32F74198100BD49D3 /* Build configuration list for PBXNativeTarget "Internship TrackerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C692FD42F74198100BD49D3 /* Debug */,

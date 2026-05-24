@@ -1,13 +1,13 @@
 //
-//  Intership_TrackerUITestsLaunchTests.swift
-//  Intership TrackerUITests
+//  internship_TrackerUITestsLaunchTests.swift
+//  internship TrackerUITests
 //
 //  Created by Berat Zengin on 25.03.2026.
 //
 
 import XCTest
 
-final class Intership_TrackerUITestsLaunchTests: XCTestCase {
+final class internship_TrackerUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
