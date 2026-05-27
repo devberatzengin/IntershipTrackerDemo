@@ -5,15 +5,39 @@ struct ContentView: View {
     var body: some View {
         TabView {
             ApplicationsTabView()
-                .tabItem { Label("Başvurular", systemImage: "briefcase.fill") }
+                .tabItem {
+                    Label("Başvurular", systemImage: "briefcase.fill")
+                }
+
             CalendarTabView()
-                .tabItem { Label("Takvim", systemImage: "calendar.badge.clock") }
+                .tabItem {
+                    Label("Takvim", systemImage: "calendar.badge.clock")
+                }
+
             AnalyticsTabView()
-                .tabItem { Label("Analitik", systemImage: "chart.bar.fill") }
+                .tabItem {
+                    Label("Analitik", systemImage: "chart.bar.fill")
+                }
+
+            JobBoardView()
+                .tabItem {
+                    Label("İlanlar", systemImage: "network")
+                }
+
+            CompanyMapView()
+                .tabItem {
+                    Label("Harita", systemImage: "map.fill")
+                }
+
             ToolsTabView()
-                .tabItem { Label("Araçlar", systemImage: "square.grid.2x2.fill") }
+                .tabItem {
+                    Label("Araçlar", systemImage: "square.grid.2x2.fill")
+                }
+
             SettingsView()
-                .tabItem { Label("Ayarlar", systemImage: "gearshape.fill") }
+                .tabItem {
+                    Label("Ayarlar", systemImage: "gearshape.fill")
+                }
         }
     }
 }
