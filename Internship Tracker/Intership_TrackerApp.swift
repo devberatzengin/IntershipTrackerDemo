@@ -1,15 +1,23 @@
 import SwiftUI
 import SwiftData
+import UserNotifications
 
 @main
 struct internship_TrackerApp: App {
+    init() {
+        UNUserNotificationCenter.current().delegate = AppNotificationDelegate.shared
+        NotificationManager.instance.requestAuthorization()
+    }
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Internship.self, Reference.self, CVDocument.self,
             NetworkContact.self, InterviewQuestion.self, AppGoal.self,
             InterviewRound.self, CoverLetter.self
         ])
+
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+
         do {
             return try ModelContainer(for: schema, migrationPlan: InternshipMigrationPlan.self, configurations: [modelConfiguration])
         } catch {
