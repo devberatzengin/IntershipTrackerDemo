@@ -76,6 +76,7 @@ struct InternshipDetailView: View {
     @Bindable var internship: Internship
     @Environment(\.modelContext) private var modelContext
     @State private var showingAddRound = false
+    @State private var showingEditSheet = false
     
     var body: some View {
         ScrollView {
@@ -167,10 +168,194 @@ struct InternshipDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button { /* Edit logic */ } label: { Text("Düzenle") }
+                Button { showingEditSheet = true } label: { Text("Düzenle") }
             }
         }
         .sheet(isPresented: $showingAddRound) { AddInterviewRoundView(internship: internship) }
+        .sheet(isPresented: $showingEditSheet) { EditInternshipView(internship: internship) }
+    }
+}
+
+struct EditInternshipView: View {
+    @Bindable var internship: Internship
+    @Environment(\.dismiss) private var dismiss
+    
+    // Temel Bilgiler
+    @State private var company = ""
+    @State private var role = ""
+    @State private var workType: WorkType = .internship
+    
+    // Başvuru Detayları
+    @State private var status: ApplicationStatus = .applied
+    @State private var applicationDate = Date()
+    @State private var jobUrl = ""
+    
+    // İletişim & Finans
+    @State private var hrContact = ""
+    @State private var expectedSalary = ""
+    @State private var offeredSalary = ""
+    
+    // Değerlendirme
+    @State private var rating = 0
+    @State private var notes = ""
+    @State private var selectedTags: Set<String> = []
+    @State private var applicationDeadline: Date? = nil
+
+    init(internship: Internship) {
+        self.internship = internship
+        _company = State(initialValue: internship.companyName)
+        _role = State(initialValue: internship.role)
+        _workType = State(initialValue: internship.workType)
+        _status = State(initialValue: internship.status)
+        _applicationDate = State(initialValue: internship.applicationDate)
+        _jobUrl = State(initialValue: internship.jobUrl)
+        _hrContact = State(initialValue: internship.hrContact)
+        _expectedSalary = State(initialValue: internship.expectedSalary)
+        _offeredSalary = State(initialValue: internship.offeredSalary)
+        _rating = State(initialValue: internship.rating)
+        _notes = State(initialValue: internship.notes)
+        _selectedTags = State(initialValue: Set(internship.tags))
+        _applicationDeadline = State(initialValue: internship.applicationDeadline)
+    }
+    
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    HStack(spacing: 12) {
+                        Image(systemName: "briefcase.fill")
+                            .foregroundColor(.blue)
+                            .frame(width: 30)
+                        TextField("Şirket İsmi", text: $company)
+                    }
+                    HStack(spacing: 12) {
+                        Image(systemName: "person.fill.viewfinder")
+                            .foregroundColor(.purple)
+                            .frame(width: 30)
+                        TextField("Pozisyon / Rol", text: $role)
+                    }
+                    Picker(selection: $workType) {
+                        ForEach(WorkType.allCases, id: \.self) { Text($0.rawValue).tag($0) }
+                    } label: {
+                        Label("Çalışma Türü", systemImage: "clock.fill")
+                    }
+                } header: { Text("Genel Bilgiler") }
+                
+                Section {
+                    Picker(selection: $status) {
+                        ForEach(ApplicationStatus.allCases, id: \.self) { Text($0.rawValue).tag($0) }
+                    } label: {
+                        Label("Durum", systemImage: "info.circle.fill")
+                    }
+                    DatePicker(selection: $applicationDate, displayedComponents: .date) {
+                        Label("Başvuru Tarihi", systemImage: "calendar")
+                    }
+                    DatePicker(selection: Binding(get: { applicationDeadline ?? Date() }, set: { applicationDeadline = $0 }), displayedComponents: .date) {
+                        Label("Son Başvuru Tarihi", systemImage: "calendar.badge.clock")
+                    }
+                    HStack(spacing: 12) {
+                        Image(systemName: "link")
+                            .foregroundColor(.blue)
+                            .frame(width: 30)
+                        TextField("Başvuru Linki (URL)", text: $jobUrl)
+                            .keyboardType(.URL)
+                            .textInputAutocapitalization(.never)
+                    }
+                } header: { Text("Takip Detayları") }
+                
+                Section {
+                    HStack(spacing: 12) {
+                        Image(systemName: "person.bubble.fill")
+                            .foregroundColor(.orange)
+                            .frame(width: 30)
+                        TextField("İK Yetkilisi / İletişim", text: $hrContact)
+                    }
+                    HStack(spacing: 12) {
+                        Image(systemName: "turkishlirasign.circle.fill")
+                            .foregroundColor(.green)
+                            .frame(width: 30)
+                        TextField("Beklenen Maaş", text: $expectedSalary)
+                            .keyboardType(.numbersAndPunctuation)
+                    }
+                    HStack(spacing: 12) {
+                        Image(systemName: "checkmark.seal.fill")
+                            .foregroundColor(.green)
+                            .frame(width: 30)
+                        TextField("Teklif Edilen Maaş", text: $offeredSalary)
+                            .keyboardType(.numbersAndPunctuation)
+                    }
+                } header: { Text("İletişim & Beklenti") }
+                
+                Section {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Label("Öncelik / Beğeni", systemImage: "star.fill")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        StarRatingView(rating: $rating)
+                    }
+                    .padding(.vertical, 4)
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        Label("Etiketler", systemImage: "tag.fill")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(predefinedTags, id: \.self) { tag in
+                                    TagChip(label: tag, isSelected: selectedTags.contains(tag), color: .accentColor) {
+                                        hapticFeedback(.light)
+                                        if selectedTags.contains(tag) { selectedTags.remove(tag) }
+                                        else { selectedTags.insert(tag) }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .padding(.vertical, 4)
+                    
+                    TextEditor(text: $notes)
+                        .frame(minHeight: 100)
+                        .overlay(alignment: .topLeading) {
+                            if notes.isEmpty {
+                                Text("Başvuru notları...")
+                                    .foregroundColor(.gray.opacity(0.5))
+                                    .padding(.top, 8)
+                                    .padding(.leading, 4)
+                                    .allowsHitTesting(false)
+                            }
+                        }
+                } header: { Text("Notlar & Değerlendirme") }
+            }
+            .navigationTitle("Başvuruyu Düzenle")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Vazgeç") { dismiss() }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Kaydet") {
+                        hapticFeedback(.soft)
+                        internship.companyName = company
+                        internship.role = role
+                        internship.workType = workType
+                        internship.status = status
+                        internship.applicationDate = applicationDate
+                        internship.jobUrl = jobUrl
+                        internship.hrContact = hrContact
+                        internship.expectedSalary = expectedSalary
+                        internship.offeredSalary = offeredSalary
+                        internship.rating = rating
+                        internship.notes = notes
+                        internship.tags = Array(selectedTags)
+                        internship.applicationDeadline = applicationDeadline
+                        dismiss()
+                    }
+                    .disabled(company.isEmpty || role.isEmpty)
+                    .fontWeight(.bold)
+                }
+            }
+        }
     }
 }
 

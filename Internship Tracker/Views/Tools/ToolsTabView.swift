@@ -11,69 +11,67 @@ struct ToolsTabView: View {
     @State private var pdfURL: URL?
 
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: 24) {
-                    VStack(alignment: .leading, spacing: 20) {
-                        ToolSection(title: "Profesyonel Araçlar") {
-                            VStack(spacing: 0) {
-                                NavigationLink(destination: NetworkingView()) {
-                                    ToolRow(icon: "person.2.wave.2.fill", color: .blue, title: "Networking", description: "Bağlantılarını ve etkinlikleri yönet")
-                                }
-                                Divider().padding(.leading, 56)
-                                NavigationLink(destination: ReferencesView()) {
-                                    ToolRow(icon: "star.bubble.fill", color: .purple, title: "Referanslarım", description: "Profesyonel referans listesi")
-                                }
-                                Divider().padding(.leading, 56)
-                                NavigationLink(destination: EmailTemplatesView()) {
-                                    ToolRow(icon: "envelope.badge.shield.fill", color: .orange, title: "E-posta Şablonları", description: "Hazır mülakat ve teklif mesajları")
-                                }
-                                Divider().padding(.leading, 56)
-                                NavigationLink(destination: CoverLetterView()) {
-                                    ToolRow(icon: "doc.append.fill", color: .indigo, title: "Niyet Mektupları", description: "Özelleştirilebilir şablonlar")
-                                }
+        ScrollView {
+            VStack(spacing: 24) {
+                VStack(alignment: .leading, spacing: 20) {
+                    ToolSection(title: "Profesyonel Araçlar") {
+                        VStack(spacing: 0) {
+                            NavigationLink(destination: NetworkingView()) {
+                                ToolRow(icon: "person.2.wave.2.fill", color: .blue, title: "Networking", description: "Bağlantılarını ve etkinlikleri yönet")
                             }
-                        }
-                        
-                        ToolSection(title: "Gelişim & Takip") {
-                            VStack(spacing: 0) {
-                                NavigationLink(destination: InterviewPrepView()) {
-                                    ToolRow(icon: "brain.head.profile.fill", color: .pink, title: "Mülakat Hazırlık", description: "Soru bankası ve notlar")
-                                }
-                                Divider().padding(.leading, 56)
-                                NavigationLink(destination: GoalSettingView()) {
-                                    ToolRow(icon: "target", color: .red, title: "Başvuru Hedeflerim", description: "Haftalık ve aylık hedefler")
-                                }
-                                Divider().padding(.leading, 56)
-                                NavigationLink(destination: CVManagementView()) {
-                                    ToolRow(icon: "doc.richtext.fill", color: .teal, title: "Özgeçmişlerim (CV)", description: "Tüm CV versiyonlarını sakla")
-                                }
+                            Divider().padding(.leading, 56)
+                            NavigationLink(destination: ReferencesView()) {
+                                ToolRow(icon: "star.bubble.fill", color: .purple, title: "Referanslarım", description: "Profesyonel referans listesi")
                             }
-                        }
-                        
-                        ToolSection(title: "Dışa Aktarma") {
-                            VStack(spacing: 0) {
-                                Button(action: { hapticFeedback(.light); exportApplicationsToCSV() }) {
-                                    ToolRow(icon: "tablecells.fill", color: .green, title: "Excel (CSV) Aktar", description: "Verilerini tablo olarak paylaş")
-                                }
-                                Divider().padding(.leading, 56)
-                                Button(action: { hapticFeedback(.light); exportToPDF() }) {
-                                    ToolRow(icon: "doc.badge.arrow.up.fill", color: .blue, title: "PDF Başvuru Raporu", description: "Profesyonel özet rapor oluştur")
-                                }
+                            Divider().padding(.leading, 56)
+                            NavigationLink(destination: EmailTemplatesView()) {
+                                ToolRow(icon: "envelope.badge.shield.fill", color: .orange, title: "E-posta Şablonları", description: "Hazır mülakat ve teklif mesajları")
                             }
-                            .buttonStyle(.plain)
+                            Divider().padding(.leading, 56)
+                            NavigationLink(destination: CoverLetterView()) {
+                                ToolRow(icon: "doc.append.fill", color: .indigo, title: "Niyet Mektupları", description: "Özelleştirilebilir şablonlar")
+                            }
                         }
                     }
-                    .padding(.horizontal)
-                    .padding(.bottom, 30)
+                    
+                    ToolSection(title: "Gelişim & Takip") {
+                        VStack(spacing: 0) {
+                            NavigationLink(destination: InterviewPrepView()) {
+                                ToolRow(icon: "brain.head.profile.fill", color: .pink, title: "Mülakat Hazirlik", description: "Soru bankası ve notlar")
+                            }
+                            Divider().padding(.leading, 56)
+                            NavigationLink(destination: GoalSettingView()) {
+                                ToolRow(icon: "target", color: .red, title: "Başvuru Hedeflerim", description: "Haftalık ve aylık hedefler")
+                            }
+                            Divider().padding(.leading, 56)
+                            NavigationLink(destination: CVManagementView()) {
+                                ToolRow(icon: "doc.richtext.fill", color: .teal, title: "Özgeçmişlerim (CV)", description: "Tüm CV versiyonlarını sakla")
+                            }
+                        }
+                    }
+                    
+                    ToolSection(title: "Dışa Aktarma") {
+                        VStack(spacing: 0) {
+                            Button(action: { hapticFeedback(.light); exportApplicationsToCSV() }) {
+                                ToolRow(icon: "tablecells.fill", color: .green, title: "Excel (CSV) Aktar", description: "Verilerini tablo olarak paylaş")
+                            }
+                            Divider().padding(.leading, 56)
+                            Button(action: { hapticFeedback(.light); exportToPDF() }) {
+                                ToolRow(icon: "doc.badge.arrow.up.fill", color: .blue, title: "PDF Başvuru Raporu", description: "Profesyonel özet rapor oluştur")
+                            }
+                        }
+                        .buttonStyle(.plain)
+                    }
                 }
-                .padding(.vertical)
+                .padding(.horizontal)
+                .padding(.bottom, 30)
             }
-            .background(Color(uiColor: .systemGroupedBackground))
-            .navigationTitle("Araçlar")
-            .sheet(isPresented: $showingExportShareSheet) { if let url = exportURL { ShareSheet(activityItems: [url]) } }
-            .sheet(isPresented: $showingPDFShare) { if let url = pdfURL { ShareSheet(activityItems: [url]) } }
+            .padding(.vertical)
         }
+        .background(Color(uiColor: .systemGroupedBackground))
+        .navigationTitle("Araçlar")
+        .sheet(isPresented: $showingExportShareSheet) { if let url = exportURL { ShareSheet(activityItems: [url]) } }
+        .sheet(isPresented: $showingPDFShare) { if let url = pdfURL { ShareSheet(activityItems: [url]) } }
         .fontDesign(.rounded)
     }
 
