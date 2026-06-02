@@ -12,25 +12,46 @@ class NotificationManager {
     }
     
     func scheduleInterviewNotification(for internship: Internship) {
-        guard let date = internship.interviewDate, internship.remindMe else { return }
+        // 1. DİKKAT: remindMe kontrolünü sildim, sadece date varsa kursun
+        guard let date = internship.interviewDate else {
+            print("Mülakat tarihi yok, bildirim kurulamadı.")
+            return
+        }
         
-        let content = UNMutableNotificationContent()
-        content.title = "Mülakat Hatırlatıcısı: \(internship.companyName)"
-        content.subtitle = internship.role
-        content.body = "Mülakatın birazdan başlıyor! Hazır mısın? 🚀"
-        content.sound = .default
+        let reminderIntervals = [60, 15, 2]
+        let baseIdentifier = internship.companyName + internship.role
         
-        // Reminder 30 minutes before
-        let reminderDate = Calendar.current.date(byAdding: .minute, value: -30, to: date) ?? date
-        let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: reminderDate)
-        
-        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
-        let request = UNNotificationRequest(identifier: internship.companyName + internship.role, content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request)
+        for interval in reminderIntervals {
+            let content = UNMutableNotificationContent()
+            content.title = "Mülakat Hatırlatıcısı: \(internship.companyName)"
+            content.subtitle = internship.role
+            
+            if interval == 60 { content.body = "Mülakatına son 1 saat kaldı! ⏳" }
+            else if interval == 15 { content.body = "Sadece 15 dakika kaldı! 💻" }
+            else { content.body = "Mülakatın 2 dakika içinde başlıyor! 🚀" }
+            
+            content.sound = .default
+            
+            // 2. DİKKAT: Sadece testi kolaylaştırmak için bildirimlerin kurulduğu saniyeyi konsola yazdırıyorum
+            let reminderDate = Calendar.current.date(byAdding: .minute, value: -interval, to: date) ?? date
+            let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: reminderDate)
+            
+            print("BİLDİRİM KURULDU: \(interval) dakika öncesi için -> \(components.hour ?? 0):\(components.minute ?? 0)")
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+            let request = UNNotificationRequest(identifier: "\(baseIdentifier)-\(interval)", content: content, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error { print("Hata: \(error.localizedDescription)") }
+            }
+        }
     }
     
     func cancelNotification(for internship: Internship) {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [internship.companyName + internship.role])
+        let baseIdentifier = internship.companyName + internship.role
+        // Mülakat iptal edilirse, kurulan 3 bildirimi de temizlememiz gerekiyor
+        let identifiersToRemove = ["\(baseIdentifier)-60", "\(baseIdentifier)-15", "\(baseIdentifier)-2"]
+        
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiersToRemove)
     }
 }

@@ -402,6 +402,10 @@ struct AddInternshipView: View {
     @State private var applicationDate = Date()
     @State private var jobUrl = ""
     
+    // Mülakat Seçimleri
+    @State private var hasInterviewDate = false
+    @State private var interviewDate = Date()
+    
     // İletişim & Finans
     @State private var hrContact = ""
     @State private var expectedSalary = ""
@@ -456,6 +460,15 @@ struct AddInternshipView: View {
                             .textInputAutocapitalization(.never)
                     }
                 } header: { Text("Takip Detayları") }
+                
+                Section(header: Text("Mülakat Bilgileri")) {
+                    Toggle("Mülakat Tarihi Belli", isOn: $hasInterviewDate)
+                    
+                    if hasInterviewDate {
+                        // Hem tarih hem de saat seçimi için:
+                        DatePicker("Tarih ve Saat", selection: $interviewDate, displayedComponents: [.date, .hourAndMinute])
+                    }
+                }
                 
                 Section {
                     HStack(spacing: 12) {
@@ -537,7 +550,17 @@ struct AddInternshipView: View {
                             expectedSalary: expectedSalary,
                             applicationDeadline: applicationDeadline
                         )
+                        
+                        if hasInterviewDate {
+                            newInternship.interviewDate = interviewDate
+                        }
+                        
                         modelContext.insert(newInternship)
+                        
+                        if hasInterviewDate {
+                            NotificationManager.instance.scheduleInterviewNotification(for: newInternship)
+                        }
+                        
                         dismiss()
                     }
                     .disabled(company.isEmpty || role.isEmpty)
@@ -679,11 +702,41 @@ struct AddInterviewRoundView: View {
     let internship: Internship
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-    @State private var t = "Teknik"; @State private var o = "Bekliyor"
+    
+    @State private var t = "Teknik"
+    @State private var o = "Bekliyor"
+    @State private var interviewDate = Date()
+    
     var body: some View {
         NavigationStack {
-            Form { TextField("Tür", text: $t); TextField("Sonuç", text: $o) }
-            .toolbar { Button("Kaydet") { modelContext.insert(InterviewRound(internship: internship, roundType: t, date: Date(), notes: "", outcome: o)); dismiss() } }
+            Form {
+                TextField("Tür", text: $t)
+                TextField("Sonuç", text: $o)
+                
+                DatePicker("Mülakat Tarihi ve Saati", selection: $interviewDate, displayedComponents: [.date, .hourAndMinute])
+            }
+            .navigationTitle("Mülakat Ekle")
+            .toolbar {
+                Button("Kaydet") {
+                    // 1. Alt tabloya (InterviewRound) yeni mülakat turunu kaydediyoruz
+                    let newRound = InterviewRound(
+                        internship: internship,
+                        roundType: t,
+                        date: interviewDate,
+                        notes: "",
+                        outcome: o
+                    )
+                    modelContext.insert(newRound)
+                    
+                    // 2. ÇÖZÜM BURASI: Ana tablodaki (Internship) tarihi güncelliyoruz ki Takvim ekranı görebilsin!
+                    internship.interviewDate = interviewDate
+                    
+                    // 3. Bildirimi kuruyoruz
+                    NotificationManager.instance.scheduleInterviewNotification(for: internship)
+                    
+                    dismiss()
+                }
+            }
         }
     }
 }
