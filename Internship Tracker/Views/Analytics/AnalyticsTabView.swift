@@ -66,8 +66,17 @@ struct AnalyticsTabView: View {
     }
     
     var salaryData: (min: Double, max: Double, avg: Double)? {
-        let salaries = activeInternships.compactMap { Double($0.offeredSalary.filter("0123456789.".contains)) }
-        guard !salaries.isEmpty else { return nil }
+        let salaries = activeInternships.compactMap { internship -> Double? in
+            let targetSalary = internship.offeredSalary.isEmpty ? internship.expectedSalary : internship.offeredSalary
+            
+            let onlyDigits = targetSalary.filter { $0.isNumber }
+            return Double(onlyDigits)
+        }.filter { $0 > 0 }
+        
+        guard !salaries.isEmpty else {
+            return (0, 0, 0)
+        }
+        
         return (salaries.min() ?? 0, salaries.max() ?? 0, salaries.reduce(0, +) / Double(salaries.count))
     }
     
