@@ -398,3 +398,8 @@ struct InsightBox: View {
         .cornerRadius(12)
     }
 }
+
+
+#Preview {
+    AnalyticsTabView()
+}

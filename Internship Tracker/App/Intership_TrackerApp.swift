@@ -4,7 +4,9 @@ import UserNotifications
 
 @main
 struct internship_TrackerApp: App {
+    
     init() {
+        // Bildirimleri Dinleyecek Delegate Burada Hazıralnıyor
         UNUserNotificationCenter.current().delegate = AppNotificationDelegate.shared
         NotificationManager.instance.requestAuthorization()
     }

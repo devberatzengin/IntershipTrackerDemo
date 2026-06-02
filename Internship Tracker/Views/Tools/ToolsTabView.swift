@@ -801,3 +801,8 @@ struct AddCoverLetterView: View {
         }
     }
 }
+
+
+#Preview {
+    ToolsTabView()
+}

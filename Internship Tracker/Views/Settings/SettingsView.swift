@@ -113,3 +113,8 @@ struct SettingsRow: View {
         .padding(16)
     }
 }
+
+
+#Preview {
+    SettingsView()
+}

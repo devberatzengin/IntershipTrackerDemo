@@ -740,3 +740,9 @@ struct AddInterviewRoundView: View {
         }
     }
 }
+
+
+
+#Preview {
+    ApplicationsTabView()
+}

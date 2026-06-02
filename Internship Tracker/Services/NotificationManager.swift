@@ -12,7 +12,7 @@ class NotificationManager {
     }
     
     func scheduleInterviewNotification(for internship: Internship) {
-        // 1. DİKKAT: remindMe kontrolünü sildim, sadece date varsa kursun
+
         guard let date = internship.interviewDate else {
             print("Mülakat tarihi yok, bildirim kurulamadı.")
             return
@@ -32,7 +32,6 @@ class NotificationManager {
             
             content.sound = .default
             
-            // 2. DİKKAT: Sadece testi kolaylaştırmak için bildirimlerin kurulduğu saniyeyi konsola yazdırıyorum
             let reminderDate = Calendar.current.date(byAdding: .minute, value: -interval, to: date) ?? date
             let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: reminderDate)
             

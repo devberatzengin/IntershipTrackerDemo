@@ -186,3 +186,8 @@ struct StatMiniCard: View {
         .shadow(color: Color.black.opacity(0.02), radius: 5, x: 0, y: 2)
     }
 }
+
+
+#Preview {
+    CalendarTabView()
+}
