@@ -12,12 +12,12 @@
 ---
 
 ## 📸 Ekran Görüntüleri
-<img width="739" height="1600" alt="WhatsApp Image 2026-06-03 at 17 35 10" src="https://github.com/user-attachments/assets/85ecb31e-17c3-4024-a0c0-36f4f48a79e2" />
-<img width="739" height="1600" alt="WhatsApp Image 2026-06-03 at 17 35 15" src="https://github.com/user-attachments/assets/f0ca28b3-fb04-4821-8000-ec81543868f4" />
-<img width="739" height="1600" alt="WhatsApp Image 2026-06-03 at 17 35 18" src="https://github.com/user-attachments/assets/40846d68-b0b8-493f-8d88-75b221dc37c2" />
-<img width="739" height="1600" alt="WhatsApp Image 2026-06-03 at 17 35 14" src="https://github.com/user-attachments/assets/484a9cb3-8771-40e4-bf12-d6e2ec5d42a8" />
-<img width="739" height="1600" alt="WhatsApp Image 2026-06-03 at 17 35 11" src="https://github.com/user-attachments/assets/1476f5b9-6158-4177-b1bd-400c095f648c" />
-<img width="739" height="1600" alt="WhatsApp Image 2026-06-03 at 17 35 16" src="https://github.com/user-attachments/assets/9200152f-8f15-47fd-92d7-c50b0ba49b77" />
+<img width="400" height="800" alt="WhatsApp Image 2026-06-03 at 17 35 10" src="https://github.com/user-attachments/assets/85ecb31e-17c3-4024-a0c0-36f4f48a79e2" />
+<img width="400" height="800" alt="WhatsApp Image 2026-06-03 at 17 35 15" src="https://github.com/user-attachments/assets/f0ca28b3-fb04-4821-8000-ec81543868f4" />
+<img width="400" height="800" alt="WhatsApp Image 2026-06-03 at 17 35 18" src="https://github.com/user-attachments/assets/40846d68-b0b8-493f-8d88-75b221dc37c2" />
+<img width="400" height="800" alt="WhatsApp Image 2026-06-03 at 17 35 14" src="https://github.com/user-attachments/assets/484a9cb3-8771-40e4-bf12-d6e2ec5d42a8" />
+<img width="400" height="800" alt="WhatsApp Image 2026-06-03 at 17 35 11" src="https://github.com/user-attachments/assets/1476f5b9-6158-4177-b1bd-400c095f648c" />
+<img width="400" height="800" alt="WhatsApp Image 2026-06-03 at 17 35 16" src="https://github.com/user-attachments/assets/9200152f-8f15-47fd-92d7-c50b0ba49b77" />
 
 ---
 
